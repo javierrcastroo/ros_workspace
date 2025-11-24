@@ -1,0 +1,14 @@
+Primero poner roscore
+
+desde la carpeta catkin_ws poner catkin_make
+
+luego devel/setup.bash
+
+luego para comprobar rospack list | grep vc_battleship
+
+Ahora, en cada terminal nueva, poner source ~/ros_workspace/Integraci-n-Rob-tica-Visi-n-RL/catkin_ws/devel/setup.bash
+y tambien cd ~/ros_workspace/Integraci-n-Rob-tica-Visi-n-RL/catkin_ws/src/vc_battleship/src
+
+LUego compilar todos los códigos con chmod +x webcam_publisher.py usb_cam_publisher.py gesture_node.py board_node.py game_logic_node.py
+
+Y luego para ejecutar cada código en un terminal siguiendo los passo de arriba poner rosrun vc_battleship y el nombre del código.
