@@ -1,0 +1,25 @@
+<launch>
+  <arg name="rows" default="10" />
+  <arg name="cols" default="10" />
+  <arg name="row_labels" default="A,B,C,D,E,F,G,H,I,J" />
+  <arg name="approach_offset" default="0.10" />
+  <arg name="move_group" default="manipulator" />
+
+  <node pkg="vc_battleship" type="board_cell_mapper.py" name="board_cell_mapper" output="screen">
+    <param name="rows" value="$(arg rows)" />
+    <param name="cols" value="$(arg cols)" />
+    <param name="row_labels" value="$(arg row_labels)" />
+
+    <remap from="board_cell_mapper/board_layout" to="/board/cell_centers" />
+    <remap from="board_cell_mapper/attack_cell" to="/attack_cell" />
+    <remap from="board_cell_mapper/attack_target_pose" to="/board/attack_target_pose" />
+  </node>
+
+  <node pkg="vc_battleship" type="attack_motion_executor.py" name="attack_motion_executor" output="screen">
+    <param name="approach_offset" value="$(arg approach_offset)" />
+    <param name="move_group" value="$(arg move_group)" />
+
+    <remap from="attack_motion_executor/attack_target_pose" to="/board/attack_target_pose" />
+    <remap from="attack_motion_executor/status" to="/robot/attack_status" />
+  </node>
+</launch>
